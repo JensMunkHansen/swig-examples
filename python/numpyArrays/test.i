@@ -1,6 +1,7 @@
 %module example
 %{
-     #include "test.h"
+  #define SWIG_FILE_WITH_INIT
+  #include "test.h"
 %}
 
 %include "numpy.i"

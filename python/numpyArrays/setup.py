@@ -1,5 +1,7 @@
 import numpy
+
 from distutils.core import setup, Extension
+#from setuptools import setup, Extension
 
 setup(name="example",
       py_modules=["example"],

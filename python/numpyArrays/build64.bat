@@ -2,9 +2,8 @@
 
 call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
 
+set PATH=%PATH%;c:\PFx64\swig
 
-IF EXIST "C:\ProgramData\Anaconda3\Scripts\activate.bat" (
-  call "C:\ProgramData\Anaconda3\Scripts\activate.bat"
-)
+c:\Users\jem\AppData\Local\Programs\Python\Python39\python.exe setup.py build_ext --inplace
 
-python setup.py build_ext --inplace
+REM c:\Users\jem\Environments\PyPI39\Scripts\python.exe setup.py build --inplace
