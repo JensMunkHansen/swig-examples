@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+# SWIG
+*_wrap.*
+
+# Python
+__pycache__*
+*.pyc
+
+# Temporaries
+*~
