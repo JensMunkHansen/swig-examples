@@ -37,6 +37,7 @@
 # Python
 __pycache__*
 *.pyc
+example.py
 
 # Temporaries
 *~
