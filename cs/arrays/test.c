@@ -9,6 +9,11 @@ void myArrayCopy(int *sourceArray, int nitems) {
 }
 
 
+int *getVector() {
+  static int arr[3] = {11,12,13};
+  return arr;
+}
+
 void myArrayCopy2( int* sourceArray2, int nitems0, int* targetArray2, int nitems1 )
 {
   printf("nitems0: %d\n", nitems0);

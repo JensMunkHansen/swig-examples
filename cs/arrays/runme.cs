@@ -6,7 +6,10 @@ public class runme {
 
         int[] arrayOut = new int[] {0, 1, 2, 3, 4};
         test.myArrayCopy2(array, 5, arrayOut, 5);
+
         Console.WriteLine($"arrayOut[4]={arrayOut[4]}");
         Console.WriteLine($"Hello");
+        int[] arr = test.getVector();
+        Console.WriteLine($"arr[0]={arr[0]}");
     }
 }
