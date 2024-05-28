@@ -1,24 +1,22 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.15)
+cmake_policy(SET CMP0091 NEW)
+cmake_policy(SET CMP0042 NEW)
 
-project(JSChallenge)
+project (Challenge LANGUAGES CXX)
 
-find_package(SWIG REQUIRED)
-include(UseSWIG)
+add_definitions(-DNAPI_VERSION=4)
+set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
 
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+include_directories(${CMAKE_JS_INC})
 
-configure_file(binding.gyp ${CMAKE_CURRENT_BINARY_DIR}/binding.gyp)
-add_library(challenge SHARED challenge.cxx)
-target_include_directories(challenge PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+set(SOURCE_FILES
+  challenge.cxx)
 
-set_source_files_properties(challenge.i PROPERTIES CPLUSPLUS ON)
-set_property(SOURCE challenge.i PROPERTY SWIG_FLAGS "-node")
+add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC})
+set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
+target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB})
 
-swig_add_library(swig_challenge LANGUAGE javascript SOURCES challenge.i)
-target_include_directories(swig_challenge PUBLIC /usr/include/node)
-target_link_libraries(swig_challenge challenge)
-
-# add_custom_command( TARGET swig_challenge POST_BUILD
-#   COMMAND node-gyp configure build
-#   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
-
+if(MSVC AND CMAKE_JS_NODELIB_DEF AND CMAKE_JS_NODELIB_TARGET)
+  # Generate node.lib
+  execute_process(COMMAND ${CMAKE_AR} /def:${CMAKE_JS_NODELIB_DEF} /out:${CMAKE_JS_NODELIB_TARGET} ${CMAKE_STATIC_LINKER_FLAGS})
+endif()
