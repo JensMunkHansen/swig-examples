@@ -1,0 +1,13 @@
+{
+    "name": "SwigJS",
+    "version": "0.0.1",
+    "scripts": {
+      "start": "node index.js",
+      "install": "node-gyp clean configure build"
+      
+    },
+    "dependencies": {
+      "nan": "^2.16.0",
+      "node-gyp": "^9.0.0"
+    }
+}
